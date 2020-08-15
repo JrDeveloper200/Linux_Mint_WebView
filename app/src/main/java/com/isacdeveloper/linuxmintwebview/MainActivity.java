@@ -31,19 +31,22 @@ public class MainActivity extends AppCompatActivity {
         //Cria o Webview e recebe métodos internos que sobreescrevem algumas ações, como o inicio do carregar da pagina e a finalização da mesma
         webView.setWebViewClient(new WebViewClient() {
 
-            //FLUXO DO SITE
+            //FLUXO DO SITE PRINCIPAL
             private static final String URL_PRINCIPAL = "projectjrdeveloper.000webhostapp.com";
             private static final String URL_GITHUB = "jrdeveloper200.github.io";
             private static final String URL_LINUX_MINT = "linuxmint-installation-guide.readthedocs.io";
 
-            //SOCIAIS
-            private static final String URL_FACEBOOK = "m.facebook.com";
-            private static final String URL_TWITTER = "m.twitter.com";
+            //SOCIAIS INTERNAS NA WEBVIEW
+            private static final String URL_FACEBOOK = "www.facebook.com";
+            private static final String URL_FACEBOOK_M = "m.facebook.com";
+            private static final String URL_TWITTER = "twitter.com";
+            private static final String URL_TWITTER_M = "mobile.twitter.com";
             private static final String URL_BLOG_LINUX = "blog.linuxmint.com";
 
 
             /**
              * Método que exibe o ProgressBar
+             *
              * @param view
              * @param url
              * @param favicon
@@ -73,12 +76,12 @@ public class MainActivity extends AppCompatActivity {
              */
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                if (request.getUrl().getHost().equals(URL_PRINCIPAL) || (request.getUrl().getHost().equals(URL_GITHUB) || (request.getUrl().getHost().equals(URL_LINUX_MINT) || (request.getUrl().getHost().equals(URL_BLOG_LINUX)) || (request.getUrl().getHost().equals(URL_FACEBOOK)) || (request.getUrl().getHost().equals(URL_TWITTER))
+                if (request.getUrl().getHost().equals(URL_PRINCIPAL) || (request.getUrl().getHost().equals(URL_GITHUB) || (request.getUrl().getHost().equals(URL_LINUX_MINT) || (request.getUrl().getHost().equals(URL_BLOG_LINUX)) || (request.getUrl().getHost().equals(URL_FACEBOOK)) || (request.getUrl().getHost().equals(URL_FACEBOOK_M)) || (request.getUrl().getHost().equals(URL_TWITTER)) || (request.getUrl().getHost().equals(URL_TWITTER_M))
                 ))) {
                     return false;
                 }
 
-                //SE CONDIÇÕES DE DOMINIO FOREM FALSAS EXIBE UMA NOVA ACTIVITY
+                //SE CONDIÇÕES DE DOMINIO FOREM FALSAS EXIBE UMA NOVA ACTIVITY. UTIL PARA OS DOWNLOADS DA PÁGINA
                 Intent intent = new Intent(Intent.ACTION_VIEW, request.getUrl());
                 startActivity(intent);
                 return true;
@@ -88,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (Uri.parse(url).getHost().equals(URL_PRINCIPAL) || (Uri.parse(url).getHost().equals(URL_GITHUB) || (Uri.parse(url).getHost().equals(URL_LINUX_MINT) || (Uri.parse(url).getHost().equals(URL_BLOG_LINUX)) || (Uri.parse(url).getHost().equals(URL_FACEBOOK)) || (Uri.parse(url).getHost().equals(URL_TWITTER))
+                if (Uri.parse(url).getHost().equals(URL_PRINCIPAL) || (Uri.parse(url).getHost().equals(URL_GITHUB) || (Uri.parse(url).getHost().equals(URL_LINUX_MINT) || (Uri.parse(url).getHost().equals(URL_BLOG_LINUX)) || (Uri.parse(url).getHost().equals(URL_FACEBOOK)) || (Uri.parse(url).getHost().equals(URL_FACEBOOK_M)) || (Uri.parse(url).getHost().equals(URL_TWITTER)) || (Uri.parse(url).getHost().equals(URL_TWITTER_M))
                 ))) {
                     return false;
                 }
 
-                //SE CONDIÇÕES DE DOMINIO FOREM FALSAS EXIBE UMA NOVA ACTIVITY
+                //SE CONDIÇÕES DE DOMINIO FOREM FALSAS EXIBE UMA NOVA ACTIVITY. UTIL PARA OS DOWNLOADS DA PÁGINA
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                 startActivity(intent);
                 return true;
@@ -101,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 
     /**
      * Método que escuta as ações de touch do usuario
